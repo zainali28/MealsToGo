@@ -1,6 +1,19 @@
 import React from "react";
 import { StyleSheet, Text } from "react-native";
 import { Card } from "react-native-paper";
+import styled from "styled-components";
+
+const RestaurantCardTitle = styled(Text)`
+  font-color: ${(props) => props.theme.colors.text.primary};
+  font-size: ${(props) => props.theme.sizes[1]};
+  font-weight: ${(props) => props.theme.fontWeights.bold};
+  margin: ${(props) => props.theme.space[1]};
+`;
+const RestaurantCardSubTitle = styled(Text)`
+  font-color: ${(props) => props.theme.colors.text.secondary};
+  font-size: ${(props) => props.theme.sizes[1]};
+  margin: ${(props) => props.theme.space[1]};
+`;
 
 type Restaurant = {
   name: string;
@@ -31,21 +44,9 @@ export const RestaurantInfoCard = ({
     <Card>
       <Card.Cover source={{ uri: photos[0] }} />
       <Card.Content>
-        <Text style={styles.restaurantName}>{name}</Text>
-        <Text style={styles.restaurantAddress}>{address}</Text>
+        <RestaurantCardTitle>{name}</RestaurantCardTitle>
+        <RestaurantCardSubTitle>{address}</RestaurantCardSubTitle>
       </Card.Content>
     </Card>
   );
 };
-
-const styles = StyleSheet.create({
-  restaurantName: {
-    fontSize: 20,
-    fontWeight: "bold",
-    margin: 4,
-  },
-  restaurantAddress: {
-    fontSize: 16,
-    margin: 4,
-  },
-});
