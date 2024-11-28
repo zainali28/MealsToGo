@@ -31,19 +31,7 @@ export const RestaurantsScreen = () => (
     <RestaurantScreen>
       <Search value="" />
       <List>
-        <RestaurantInfoCard
-          restaurant={{
-            name: "some restaurant",
-            icon: null,
-            photos: [
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9oBl8oMj8unCKsHx9WuzVKgxc34HJnei-Qw&s",
-            ],
-            address: "somewhere",
-            isOpenNow: true,
-            rating: 3,
-            isClosedTemporarily: false,
-          }}
-        />
+        <RestaurantInfoCard />
       </List>
     </RestaurantScreen>
   </ThemeProvider>
