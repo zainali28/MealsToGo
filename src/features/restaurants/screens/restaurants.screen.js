@@ -1,16 +1,9 @@
 import React from "react";
-import {
-  View,
-  Text,
-  SafeAreaView,
-  StyleSheet,
-  Platform,
-  StatusBar,
-} from "react-native";
+import { View, SafeAreaView, Platform, StatusBar } from "react-native";
 import { Searchbar } from "react-native-paper";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
+
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
-import { theme } from "../../../infrastructure/theme";
 
 const RestaurantScreen = styled(SafeAreaView)`
   padding-top: ${Platform.OS == "android" ? StatusBar.currentHeight : 0}px;
@@ -27,12 +20,10 @@ const List = styled(View)`
 `;
 
 export const RestaurantsScreen = () => (
-  <ThemeProvider theme={theme}>
-    <RestaurantScreen>
-      <Search value="" />
-      <List>
-        <RestaurantInfoCard />
-      </List>
-    </RestaurantScreen>
-  </ThemeProvider>
+  <RestaurantScreen>
+    <Search value="" />
+    <List>
+      <RestaurantInfoCard />
+    </List>
+  </RestaurantScreen>
 );
