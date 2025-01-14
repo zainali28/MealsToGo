@@ -2,7 +2,7 @@ import {
   restaurantsRequest,
   restaurantsTransform,
 } from "./restaurants.service";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const RestaurantsContext = createContext();
 

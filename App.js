@@ -12,10 +12,7 @@ import { RestaurantsScreen } from "./src/features/restaurants/screens/restaurant
 import { theme } from "./src/infrastructure/theme";
 import { SafeArea } from "./src/features/restaurants/components/utility/safe-area.component";
 import { Ionicons } from "@expo/vector-icons";
-import {
-  RestaurantsContext,
-  RestaurantsContextProvider,
-} from "./src/services/restaurants/restaurants.context";
+import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
 
 const TAB_ICON = {
   Restaurants: "restaurant",
