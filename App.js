@@ -12,9 +12,13 @@ import { RestaurantsScreen } from "./src/features/restaurants/screens/restaurant
 import { theme } from "./src/infrastructure/theme";
 import { SafeArea } from "./src/features/restaurants/components/utility/safe-area.component";
 import { Ionicons } from "@expo/vector-icons";
+import {
+  RestaurantsContext,
+  RestaurantsContextProvider,
+} from "./src/services/restaurants/restaurants.context";
 
 const TAB_ICON = {
-  Restaurant: "restaurant",
+  Restaurants: "restaurant",
   Map: "map",
   Settings: "settings",
 };
@@ -33,7 +37,7 @@ const MapsScreen = () => (
 
 const MyTabs = createBottomTabNavigator({
   screens: {
-    Restaurant: RestaurantsScreen,
+    Restaurants: RestaurantsScreen,
     Map: MapsScreen,
     Settings: SettingsScreen,
   },
@@ -68,7 +72,9 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Navigation />
+      <RestaurantsContextProvider>
+        <Navigation />
+      </RestaurantsContextProvider>
     </ThemeProvider>
   );
 }
