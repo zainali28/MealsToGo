@@ -27,7 +27,7 @@ export const LocationContextProvider = ({ children }) => {
 
   useEffect(() => {
     onSearch(keyword);
-  }, []);
+  }, [keyword]);
 
   return (
     <LocationContext.Provider
