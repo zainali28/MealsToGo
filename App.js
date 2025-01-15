@@ -13,6 +13,7 @@ import { theme } from "./src/infrastructure/theme";
 import { SafeArea } from "./src/features/restaurants/components/utility/safe-area.component";
 import { Ionicons } from "@expo/vector-icons";
 import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
+import { LocationContextProvider } from "./src/services/location/location.context";
 
 const TAB_ICON = {
   Restaurants: "restaurant",
@@ -69,9 +70,11 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <RestaurantsContextProvider>
-        <Navigation />
-      </RestaurantsContextProvider>
+      <LocationContextProvider>
+        <RestaurantsContextProvider>
+          <Navigation />
+        </RestaurantsContextProvider>
+      </LocationContextProvider>
     </ThemeProvider>
   );
 }
