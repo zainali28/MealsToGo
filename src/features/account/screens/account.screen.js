@@ -1,3 +1,9 @@
+import { AccountBackground, AccountCover } from "../components/accounts.styles";
+
 export const AccountScreen = () => {
-  return null;
+  return (
+    <AccountBackground>
+      <AccountCover />
+    </AccountBackground>
+  );
 };
