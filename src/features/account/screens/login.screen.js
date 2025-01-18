@@ -43,7 +43,6 @@ export const LoginScreen = ({ navigation }) => {
             textContentType="password"
             secureTextEntry
             autoCapitalize="none"
-            secure
             onSubmitEditing={() => onLogin(email, password)}
             onChangeText={(text) => {
               setError(null);

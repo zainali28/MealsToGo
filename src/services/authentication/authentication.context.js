@@ -22,8 +22,13 @@ export const AuthContextProvider = ({ children }) => {
       });
   };
 
-  const onRegister = (email, password) => {
+  const onRegister = (email, password, repeatPassword) => {
     setIsLoading(true);
+    if (repeatPassword !== password) {
+      setError("Passwords do not match");
+      setIsLoading(false);
+      return;
+    }
     firebaseAuth
       .createUserWithEmailAndPassword(firebaseAuth.getAuth(), email, password)
       .then((u) => {

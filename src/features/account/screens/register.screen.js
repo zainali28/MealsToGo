@@ -48,7 +48,6 @@ export const RegisterScreen = ({ navigation }) => {
             textContentType="password"
             secureTextEntry={hidePassword}
             autoCapitalize="none"
-            secure={hidePassword}
             right={
               <TextInput.Icon
                 onPress={() => setHidePassword(!hidePassword)}
@@ -68,7 +67,6 @@ export const RegisterScreen = ({ navigation }) => {
             textContentType="password"
             secureTextEntry={hideRepeatPassword}
             autoCapitalize="none"
-            secure={hideRepeatPassword}
             right={
               <TextInput.Icon
                 onPress={() => setHideRepeatPassword(!hideRepeatPassword)}
@@ -94,9 +92,7 @@ export const RegisterScreen = ({ navigation }) => {
             icon="email-outline"
             mode="contained"
             onPress={() => {
-              password === repeatPassword
-                ? onRegister(email, password)
-                : setError("Passwords do not match");
+              onRegister(email, password, repeatPassword);
             }}
           >
             Register
