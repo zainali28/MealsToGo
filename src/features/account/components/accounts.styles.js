@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Button } from "react-native-paper";
 import { colors } from "../../../infrastructure/theme/colors";
 import { TextInput } from "react-native-paper";
+import { Text } from "../../../components/typography/text.component";
 
 export const AccountBackground = styled.ImageBackground.attrs({
   source: require("../../../../assets/home_bg.jpg"),
@@ -36,4 +37,14 @@ export const AuthButton = styled(Button).attrs({
 export const AuthInput = styled(TextInput)`
   width: 250px;
   height: 26px;
+`;
+
+export const Title = styled(Text)`
+  font-size: 30px;
+`;
+
+export const ErrorContainer = styled.View`
+  max-width: 250px;
+  align-items: center;
+  align-self: center;
 `;

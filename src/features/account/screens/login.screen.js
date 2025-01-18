@@ -5,21 +5,24 @@ import {
   AccountCover,
   AuthInput,
   AuthButton,
+  ErrorContainer,
+  Title,
 } from "../components/accounts.styles";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { AuthContext } from "../../../services/authentication/authentication.context";
 import { useContext } from "react";
 import { Text } from "../../../components/typography/text.component";
 
-export const LoginScreen = () => {
+export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { error, onLogin } = useContext(AuthContext);
+  const { error, onLogin, setError } = useContext(AuthContext);
 
   return (
     <AccountBackground>
       <AccountCover>
+        <Title>MealsToGo</Title>
         <AccountContainer>
           <AuthInput
             label="Email"
@@ -28,7 +31,10 @@ export const LoginScreen = () => {
             keyboardType="email-address"
             autoCapitalize="none"
             value={email}
-            onChangeText={(text) => setEmail(text)}
+            onChangeText={(text) => {
+              setError(null);
+              setEmail(text);
+            }}
           />
           <Spacer position="bottom" size="large" />
           <AuthInput
@@ -38,12 +44,18 @@ export const LoginScreen = () => {
             secureTextEntry
             autoCapitalize="none"
             secure
-            onChangeText={(text) => setPassword(text)}
+            onSubmitEditing={() => onLogin(email, password)}
+            onChangeText={(text) => {
+              setError(null);
+              setPassword(text);
+            }}
           />
           <Spacer position="bottom" size="large" />
           {error && (
             <Spacer size="large">
-              <Text variant="error">{error}</Text>
+              <ErrorContainer>
+                <Text variant="error">{error}</Text>
+              </ErrorContainer>
             </Spacer>
           )}
           <Spacer position="bottom" size="large" />
@@ -55,6 +67,16 @@ export const LoginScreen = () => {
             }}
           >
             Login
+          </AuthButton>
+          <Spacer size="large" />
+          <AuthButton
+            icon="keyboard-backspace"
+            mode="contained"
+            onPress={() => {
+              navigation.goBack();
+            }}
+          >
+            Back
           </AuthButton>
         </AccountContainer>
       </AccountCover>

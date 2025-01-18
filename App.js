@@ -28,7 +28,6 @@ if (!firebaseApp.getApps().length) {
 }
 
 export default function App() {
-  const [isAthenticated, setIsAthenticated] = useState(false);
   const [oswaldLoaded] = useOswald({
     Oswald_400Regular,
   });

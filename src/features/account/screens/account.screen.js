@@ -3,18 +3,26 @@ import {
   AccountCover,
   AccountContainer,
   AuthButton,
+  Title,
 } from "../components/accounts.styles";
 import { Spacer } from "../../../components/spacer/spacer.component";
+import { AuthContext } from "../../../services/authentication/authentication.context";
+import { useContext } from "react";
 
 export const AccountScreen = ({ navigation }) => {
+  const { setError } = useContext(AuthContext);
   return (
     <AccountBackground>
       <AccountCover>
+        <Title>MealsToGo</Title>
         <AccountContainer>
           <AuthButton
             icon="lock-open-outline"
             mode="contained"
-            onPress={() => navigation.navigate("Login")}
+            onPress={() => {
+              setError(null);
+              navigation.navigate("Login");
+            }}
           >
             Login
           </AuthButton>
@@ -22,7 +30,10 @@ export const AccountScreen = ({ navigation }) => {
           <AuthButton
             icon="email-outline"
             mode="contained"
-            onPress={() => navigation.navigate("Register")}
+            onPress={() => {
+              setError(null);
+              navigation.navigate("Register");
+            }}
           >
             Register
           </AuthButton>
