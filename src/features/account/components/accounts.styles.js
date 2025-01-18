@@ -48,3 +48,7 @@ export const ErrorContainer = styled.View`
   align-items: center;
   align-self: center;
 `;
+
+const IconWrapper = styled.View`
+  margin-top: 40px;
+`;

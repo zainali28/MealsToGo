@@ -7,16 +7,20 @@ import {
   AuthButton,
   ErrorContainer,
   Title,
+  IconWrapper,
 } from "../components/accounts.styles";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { AuthContext } from "../../../services/authentication/authentication.context";
 import { useContext } from "react";
 import { Text } from "../../../components/typography/text.component";
+import { TextInput } from "react-native-paper";
 
 export const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [hideRepeatPassword, setHideRepeatPassword] = useState(true);
+  const [hidePassword, setHidePassword] = useState(true);
 
   const { error, onRegister, setError } = useContext(AuthContext);
 
@@ -42,9 +46,16 @@ export const RegisterScreen = ({ navigation }) => {
             label="Password"
             value={password}
             textContentType="password"
-            secureTextEntry
+            secureTextEntry={hidePassword}
             autoCapitalize="none"
-            secure
+            secure={hidePassword}
+            right={
+              <TextInput.Icon
+                onPress={() => setHidePassword(!hidePassword)}
+                icon={"eye" + (hidePassword ? "" : "-off")}
+                style={{ marginTop: 40 }}
+              />
+            }
             onChangeText={(text) => {
               setError(null);
               setPassword(text);
@@ -55,9 +66,16 @@ export const RegisterScreen = ({ navigation }) => {
             label="Repeat Password"
             value={repeatPassword}
             textContentType="password"
-            secureTextEntry
+            secureTextEntry={hideRepeatPassword}
             autoCapitalize="none"
-            secure
+            secure={hideRepeatPassword}
+            right={
+              <TextInput.Icon
+                onPress={() => setHideRepeatPassword(!hideRepeatPassword)}
+                icon={"eye" + (hideRepeatPassword ? "" : "-off")}
+                style={{ marginTop: 40 }}
+              />
+            }
             onChangeText={(text) => {
               setError(null);
               setRepeatPassword(text);
