@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ActivityIndicator, MD2Colors } from "react-native-paper";
 import {
   AccountBackground,
   AccountContainer,
@@ -12,12 +13,14 @@ import { Spacer } from "../../../components/spacer/spacer.component";
 import { AuthContext } from "../../../services/authentication/authentication.context";
 import { useContext } from "react";
 import { Text } from "../../../components/typography/text.component";
+import { TextInput } from "react-native-paper";
 
 export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [hidePassword, setHidePassword] = useState(true);
 
-  const { error, onLogin, setError } = useContext(AuthContext);
+  const { error, onLogin, setError, isLoading } = useContext(AuthContext);
 
   return (
     <AccountBackground>
@@ -41,12 +44,21 @@ export const LoginScreen = ({ navigation }) => {
             label="Password"
             value={password}
             textContentType="password"
-            secureTextEntry
+            secureTextEntry={hidePassword}
             autoCapitalize="none"
-            onSubmitEditing={() => onLogin(email, password)}
+            right={
+              <TextInput.Icon
+                onPress={() => setHidePassword(!hidePassword)}
+                icon={"eye" + (hidePassword ? "" : "-off")}
+                style={{ marginTop: 40 }}
+              />
+            }
             onChangeText={(text) => {
               setError(null);
               setPassword(text);
+            }}
+            onSubmitEditing={() => {
+              onLogin(email, password);
             }}
           />
           <Spacer position="bottom" size="large" />
@@ -58,15 +70,19 @@ export const LoginScreen = ({ navigation }) => {
             </Spacer>
           )}
           <Spacer position="bottom" size="large" />
-          <AuthButton
-            icon="lock-open-outline"
-            mode="contained"
-            onPress={() => {
-              onLogin(email, password);
-            }}
-          >
-            Login
-          </AuthButton>
+          {isLoading ? (
+            <ActivityIndicator animating={true} color={MD2Colors.orange800} />
+          ) : (
+            <AuthButton
+              icon="lock-open-outline"
+              mode="contained"
+              onPress={() => {
+                onLogin(email, password);
+              }}
+            >
+              Login
+            </AuthButton>
+          )}
           <Spacer size="large" />
           <AuthButton
             icon="keyboard-backspace"

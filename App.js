@@ -6,10 +6,7 @@ import {
   Oswald_400Regular,
 } from "@expo-google-fonts/oswald";
 import { theme } from "./src/infrastructure/theme";
-import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
-import { LocationContextProvider } from "./src/services/location/location.context";
 import { Navigation } from "./src/infrastructure/navigation";
-import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
 import * as firebaseApp from "firebase/app";
 import * as firebaseAuth from "firebase/auth";
 import { AuthContextProvider } from "./src/services/authentication/authentication.context";
@@ -47,13 +44,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <AuthContextProvider>
-        <FavouritesContextProvider>
-          <LocationContextProvider>
-            <RestaurantsContextProvider>
-              <Navigation />
-            </RestaurantsContextProvider>
-          </LocationContextProvider>
-        </FavouritesContextProvider>
+        <Navigation />
       </AuthContextProvider>
     </ThemeProvider>
   );

@@ -7,13 +7,13 @@ import {
   AuthButton,
   ErrorContainer,
   Title,
-  IconWrapper,
 } from "../components/accounts.styles";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { AuthContext } from "../../../services/authentication/authentication.context";
 import { useContext } from "react";
 import { Text } from "../../../components/typography/text.component";
 import { TextInput } from "react-native-paper";
+import { ActivityIndicator, MD2Colors } from "react-native-paper";
 
 export const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -22,7 +22,7 @@ export const RegisterScreen = ({ navigation }) => {
   const [hideRepeatPassword, setHideRepeatPassword] = useState(true);
   const [hidePassword, setHidePassword] = useState(true);
 
-  const { error, onRegister, setError } = useContext(AuthContext);
+  const { error, onRegister, setError, isLoading } = useContext(AuthContext);
 
   return (
     <AccountBackground>
@@ -78,6 +78,9 @@ export const RegisterScreen = ({ navigation }) => {
               setError(null);
               setRepeatPassword(text);
             }}
+            onSubmitEditing={() => {
+              onRegister(email, password, repeatPassword);
+            }}
           />
           <Spacer position="bottom" size="large" />
           {error && (
@@ -88,15 +91,19 @@ export const RegisterScreen = ({ navigation }) => {
             </Spacer>
           )}
           <Spacer position="bottom" size="large" />
-          <AuthButton
-            icon="email-outline"
-            mode="contained"
-            onPress={() => {
-              onRegister(email, password, repeatPassword);
-            }}
-          >
-            Register
-          </AuthButton>
+          {isLoading ? (
+            <ActivityIndicator animating={true} color={MD2Colors.orange800} />
+          ) : (
+            <AuthButton
+              icon="email-outline"
+              mode="contained"
+              onPress={() => {
+                onRegister(email, password, repeatPassword);
+              }}
+            >
+              Register
+            </AuthButton>
+          )}
           <Spacer size="large" />
           <AuthButton
             icon="keyboard-backspace"

@@ -9,6 +9,15 @@ export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
 
+  firebaseAuth.onAuthStateChanged(firebaseAuth.getAuth(), (usr) => {
+    if (usr) {
+      setUser(usr);
+      setIsLoading(false);
+    } else {
+      setIsLoading(false);
+    }
+  });
+
   const onLogin = (email, password) => {
     setIsLoading(true);
     loginRequest(email, password)
@@ -41,6 +50,11 @@ export const AuthContextProvider = ({ children }) => {
       });
   };
 
+  const onLogout = () => {
+    setUser(null);
+    firebaseAuth.signOut(firebaseAuth.getAuth());
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -51,6 +65,7 @@ export const AuthContextProvider = ({ children }) => {
         onLogin,
         setError,
         onRegister,
+        onLogout,
       }}
     >
       {children}
