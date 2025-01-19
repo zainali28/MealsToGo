@@ -8,6 +8,7 @@ import {
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { AuthContext } from "../../../services/authentication/authentication.context";
 import { useContext } from "react";
+import LottieView from "lottie-react-native";
 
 export const AccountScreen = ({ navigation }) => {
   const { setError } = useContext(AuthContext);
