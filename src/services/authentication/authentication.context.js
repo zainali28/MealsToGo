@@ -1,6 +1,7 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { loginRequest } from "./authentication.service";
 import * as firebaseAuth from "firebase/auth";
+import { auth } from "../../../firebaseConfig";
 
 export const AuthContext = createContext();
 
@@ -9,14 +10,16 @@ export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
 
-  firebaseAuth.onAuthStateChanged(firebaseAuth.getAuth(), (usr) => {
-    if (usr) {
-      setUser(usr);
-      setIsLoading(false);
-    } else {
-      setIsLoading(false);
-    }
-  });
+  useEffect(() => {
+    firebaseAuth.onAuthStateChanged(auth, (usr) => {
+      if (usr) {
+        setUser(usr);
+        setIsLoading(false);
+      } else {
+        setIsLoading(false);
+      }
+    });
+  }, [user]);
 
   const onLogin = (email, password) => {
     setIsLoading(true);
@@ -39,7 +42,7 @@ export const AuthContextProvider = ({ children }) => {
       return;
     }
     firebaseAuth
-      .createUserWithEmailAndPassword(firebaseAuth.getAuth(), email, password)
+      .createUserWithEmailAndPassword(auth, email, password)
       .then((u) => {
         setUser(u);
         setIsLoading(false);
@@ -52,7 +55,14 @@ export const AuthContextProvider = ({ children }) => {
 
   const onLogout = () => {
     setUser(null);
-    firebaseAuth.signOut(firebaseAuth.getAuth());
+    firebaseAuth
+      .signOut(auth)
+      .then(() => {
+        setUser(null);
+        setError(null);
+        console.log("signed out");
+      })
+      .catch((e) => console.log(e.toString()));
   };
 
   return (
