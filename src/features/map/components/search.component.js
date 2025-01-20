@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Searchbar } from "react-native-paper";
+import { Searchbar, MD2Colors } from "react-native-paper";
 import styled from "styled-components";
 import { LocationContext } from "../../../services/location/location.context";
 
@@ -25,6 +25,7 @@ export const Search = () => {
         value={searchKeyword}
         placeholder="Search for location"
         icon="map"
+        iconColor={MD2Colors.orange800}
         onChangeText={(text) => setSearchKeyword(text)}
         onSubmitEditing={() => search(searchKeyword)}
       />

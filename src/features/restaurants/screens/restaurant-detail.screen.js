@@ -1,6 +1,6 @@
 import { SafeArea } from "../components/utility/safe-area.component";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
-import { List } from "react-native-paper";
+import { List, MD2Colors } from "react-native-paper";
 import { useState } from "react";
 import { ScrollView } from "react-native-gesture-handler";
 
@@ -28,7 +28,13 @@ export const RestaurantDetailCard = ({ route }) => {
         <List.Section title="Menu">
           <List.Accordion
             title="Breakfast"
-            left={(props) => <List.Icon {...props} icon={iconBreakfast} />}
+            left={(props) => (
+              <List.Icon
+                {...props}
+                color={MD2Colors.orange800}
+                icon={iconBreakfast}
+              />
+            )}
             expanded={expandedBreakfast}
             onPress={() => {
               setIconBreakfast(
@@ -45,7 +51,13 @@ export const RestaurantDetailCard = ({ route }) => {
           </List.Accordion>
           <List.Accordion
             title="Lunch"
-            left={(props) => <List.Icon {...props} icon={iconLunch} />}
+            left={(props) => (
+              <List.Icon
+                {...props}
+                color={MD2Colors.orange800}
+                icon={iconLunch}
+              />
+            )}
             expanded={expandedLunch}
             onPress={() => {
               setIconLunch(
@@ -62,7 +74,13 @@ export const RestaurantDetailCard = ({ route }) => {
           </List.Accordion>
           <List.Accordion
             title="Dinner"
-            left={(props) => <List.Icon {...props} icon={iconDinner} />}
+            left={(props) => (
+              <List.Icon
+                {...props}
+                color={MD2Colors.orange800}
+                icon={iconDinner}
+              />
+            )}
             expanded={expandedDinner}
             onPress={() => {
               setIconDinner(
@@ -79,7 +97,13 @@ export const RestaurantDetailCard = ({ route }) => {
           </List.Accordion>
           <List.Accordion
             title="Drinks"
-            left={(props) => <List.Icon {...props} icon={iconDrinks} />}
+            left={(props) => (
+              <List.Icon
+                {...props}
+                color={MD2Colors.orange800}
+                icon={iconDrinks}
+              />
+            )}
             expanded={expandedDrinks}
             onPress={() => {
               setIconDrinks(

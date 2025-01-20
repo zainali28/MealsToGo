@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button } from "react-native-paper";
+import { Button, MD2Colors } from "react-native-paper";
 import { colors } from "../../../infrastructure/theme/colors";
 import { TextInput } from "react-native-paper";
 import { Text } from "../../../components/typography/text.component";
@@ -30,7 +30,7 @@ export const AccountContainer = styled.View`
 `;
 
 export const AuthButton = styled(Button).attrs({
-  buttonColor: colors.brand.primary,
+  buttonColor: MD2Colors.orange800,
 })`
   padding: ${(props) => props.theme.space[1]};
 `;

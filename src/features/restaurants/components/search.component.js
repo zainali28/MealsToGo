@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Searchbar } from "react-native-paper";
+import { Searchbar, MD2Colors } from "react-native-paper";
 import styled from "styled-components";
 import { LocationContext } from "../../../services/location/location.context";
 
@@ -20,6 +20,7 @@ export const Search = ({ isFavouritesToggled, onFavouritesToggle }) => {
       <Searchbar
         value={searchKeyword}
         icon={isFavouritesToggled ? "heart" : "heart-outline"}
+        iconColor={MD2Colors.orange800}
         onIconPress={onFavouritesToggle}
         placeholder="Search for location"
         onChangeText={(text) => setSearchKeyword(text)}

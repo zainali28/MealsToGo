@@ -1,7 +1,7 @@
 import { SafeArea } from "../../restaurants/components/utility/safe-area.component";
 import { AuthContext } from "../../../services/authentication/authentication.context";
 import { useContext } from "react";
-import { List, Avatar } from "react-native-paper";
+import { List, Avatar, MD2Colors } from "react-native-paper";
 import { SettingsList, AvatarContainer } from "../components/settings.styles";
 import { Text } from "../../../components/typography/text.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
@@ -20,13 +20,13 @@ export const SettingsScreen = ({ navigation }) => {
         <List.Item
           title="Favourites"
           description="View your favourites"
-          left={() => <List.Icon icon="heart" />}
+          left={() => <List.Icon color={MD2Colors.orange800} icon="heart" />}
           onPress={() => navigation.navigate("Favourites")}
         />
         <List.Item
           title="Log out"
           description="Log out account"
-          left={() => <List.Icon icon="logout" />}
+          left={() => <List.Icon color={MD2Colors.orange800} icon="logout" />}
           onPress={() => onLogout()}
         />
       </SettingsList>
