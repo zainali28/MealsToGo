@@ -4,6 +4,8 @@ import {
   AccountContainer,
   AuthButton,
   Title,
+  AnimationWrapper,
+  Animation,
 } from "../components/accounts.styles";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { AuthContext } from "../../../services/authentication/authentication.context";
@@ -12,9 +14,13 @@ import LottieView from "lottie-react-native";
 
 export const AccountScreen = ({ navigation }) => {
   const { setError } = useContext(AuthContext);
+
   return (
     <AccountBackground>
       <AccountCover>
+        <AnimationWrapper>
+          <Animation source={require("../../../../assets/watermelon.json")} />
+        </AnimationWrapper>
         <Title>MealsToGo</Title>
         <AccountContainer>
           <AuthButton

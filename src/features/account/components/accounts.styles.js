@@ -3,6 +3,7 @@ import { Button } from "react-native-paper";
 import { colors } from "../../../infrastructure/theme/colors";
 import { TextInput } from "react-native-paper";
 import { Text } from "../../../components/typography/text.component";
+import LottieView from "lottie-react-native";
 
 export const AccountBackground = styled.ImageBackground.attrs({
   source: require("../../../../assets/home_bg.jpg"),
@@ -49,6 +50,20 @@ export const ErrorContainer = styled.View`
   align-self: center;
 `;
 
-const IconWrapper = styled.View`
-  margin-top: 40px;
+export const AnimationWrapper = styled.View`
+  width: 100%;
+  height: 40%;
+  position: absolute;
+  top: 30px;
+  padding: ${(props) => props.theme.space[2]};
+`;
+
+export const Animation = styled(LottieView).attrs({
+  key: "animation",
+  autoPlay: true,
+  loop: true,
+  resizeMode: "cover",
+})`
+  width: 100%;
+  height: 100%;
 `;
