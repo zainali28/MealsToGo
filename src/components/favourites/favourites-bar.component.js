@@ -9,7 +9,12 @@ const FavouritesWrapper = styled.View`
 `;
 
 export const FavouritesBar = ({ favourites, onNavigate }) => {
-  if (!favourites.length) return;
+  if (!favourites.length)
+    return (
+      <Spacer position="left" size="large">
+        <Text variant="caption">No Restaurants Favourited Yet</Text>
+      </Spacer>
+    );
   return (
     <FavouritesWrapper>
       <Spacer position="left" size="large">

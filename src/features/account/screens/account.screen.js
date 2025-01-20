@@ -24,7 +24,7 @@ export const AccountScreen = ({ navigation }) => {
         <Title>MealsToGo</Title>
         <AccountContainer>
           <AuthButton
-            icon="lock-open-outline"
+            icon="login"
             mode="contained"
             onPress={() => {
               setError(null);

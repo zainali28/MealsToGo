@@ -74,7 +74,7 @@ export const LoginScreen = ({ navigation }) => {
             <ActivityIndicator animating={true} color={MD2Colors.orange800} />
           ) : (
             <AuthButton
-              icon="lock-open-outline"
+              icon="login"
               mode="contained"
               onPress={() => {
                 onLogin(email, password);
