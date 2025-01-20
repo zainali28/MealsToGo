@@ -6,6 +6,7 @@ import { RestaurantsContext } from "../../../services/restaurants/restaurants.co
 import { useEffect, useState, useContext } from "react";
 import { ActivityIndicator, MD2Colors } from "react-native-paper";
 import { MapCallout } from "../components/map-callout.component";
+import { FadeInView } from "../../../components/animations/fade.animation";
 
 const Map = styled(MapView)`
   height: 100%;
@@ -42,41 +43,44 @@ export const MapScreen = ({ navigation }) => {
 
   return (
     <>
-      <LoadingContainer>
-        {isLoading && (
-          <Loading animating={true} size={50} color={MD2Colors.orange800} />
-        )}
-      </LoadingContainer>
       <Search />
-      <Map
-        region={{
-          latitude: lat,
-          longitude: lng,
-          latitudeDelta: latDelta,
-          longitudeDelta: 0.02,
-        }}
-      >
-        {restaurants.map((restaurant) => (
-          <Marker
-            key={restaurant.name}
-            title={restaurant.name}
-            coordinate={{
-              longitude: restaurant.geometry.location.lng,
-              latitude: restaurant.geometry.location.lat,
-            }}
-            onPress={() => {
-              navigation.navigate("Restaurants", {
-                screen: "RestaurantDetail",
-                params: { restaurant },
-              });
+      {isLoading ? (
+        <LoadingContainer>
+          <Loading animating={true} size={50} color={MD2Colors.orange800} />
+        </LoadingContainer>
+      ) : (
+        <FadeInView>
+          <Map
+            region={{
+              latitude: lat,
+              longitude: lng,
+              latitudeDelta: latDelta,
+              longitudeDelta: 0.02,
             }}
           >
-            {/* <Callout>
+            {restaurants.map((restaurant) => (
+              <Marker
+                key={restaurant.name}
+                title={restaurant.name}
+                coordinate={{
+                  longitude: restaurant.geometry.location.lng,
+                  latitude: restaurant.geometry.location.lat,
+                }}
+                onPress={() => {
+                  navigation.navigate("Restaurants", {
+                    screen: "RestaurantDetail",
+                    params: { restaurant },
+                  });
+                }}
+              >
+                {/* <Callout>
               <MapCallout restaurant={restaurant} />
             </Callout> */}
-          </Marker>
-        ))}
-      </Map>
+              </Marker>
+            ))}
+          </Map>
+        </FadeInView>
+      )}
     </>
   );
 };

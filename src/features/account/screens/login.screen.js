@@ -14,6 +14,7 @@ import { AuthContext } from "../../../services/authentication/authentication.con
 import { useContext } from "react";
 import { Text } from "../../../components/typography/text.component";
 import { TextInput } from "react-native-paper";
+import { FadeInView } from "../../../components/animations/fade.animation";
 
 export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -26,74 +27,76 @@ export const LoginScreen = ({ navigation }) => {
     <AccountBackground>
       <AccountCover>
         <Title>MealsToGo</Title>
-        <AccountContainer>
-          <AuthInput
-            label="Email"
-            placeholder="email@email.com"
-            textContentType="emailAddress"
-            keyboardType="email-address"
-            autoCapitalize="none"
-            value={email}
-            onChangeText={(text) => {
-              setError(null);
-              setEmail(text);
-            }}
-          />
-          <Spacer position="bottom" size="large" />
-          <AuthInput
-            label="Password"
-            value={password}
-            textContentType="password"
-            secureTextEntry={hidePassword}
-            autoCapitalize="none"
-            right={
-              <TextInput.Icon
-                onPress={() => setHidePassword(!hidePassword)}
-                icon={"eye" + (hidePassword ? "" : "-off")}
-                style={{ marginTop: 40 }}
-              />
-            }
-            onChangeText={(text) => {
-              setError(null);
-              setPassword(text);
-            }}
-            onSubmitEditing={() => {
-              onLogin(email, password);
-            }}
-          />
-          <Spacer position="bottom" size="large" />
-          {error && (
-            <Spacer size="large">
-              <ErrorContainer>
-                <Text variant="error">{error}</Text>
-              </ErrorContainer>
-            </Spacer>
-          )}
-          <Spacer position="bottom" size="large" />
-          {isLoading ? (
-            <ActivityIndicator animating={true} color={MD2Colors.orange800} />
-          ) : (
-            <AuthButton
-              icon="login"
-              mode="contained"
-              onPress={() => {
+        <FadeInView>
+          <AccountContainer>
+            <AuthInput
+              label="Email"
+              placeholder="email@email.com"
+              textContentType="emailAddress"
+              keyboardType="email-address"
+              autoCapitalize="none"
+              value={email}
+              onChangeText={(text) => {
+                setError(null);
+                setEmail(text);
+              }}
+            />
+            <Spacer position="bottom" size="large" />
+            <AuthInput
+              label="Password"
+              value={password}
+              textContentType="password"
+              secureTextEntry={hidePassword}
+              autoCapitalize="none"
+              right={
+                <TextInput.Icon
+                  onPress={() => setHidePassword(!hidePassword)}
+                  icon={"eye" + (hidePassword ? "" : "-off")}
+                  style={{ marginTop: 40 }}
+                />
+              }
+              onChangeText={(text) => {
+                setError(null);
+                setPassword(text);
+              }}
+              onSubmitEditing={() => {
                 onLogin(email, password);
               }}
+            />
+            <Spacer position="bottom" size="large" />
+            {error && (
+              <Spacer size="large">
+                <ErrorContainer>
+                  <Text variant="error">{error}</Text>
+                </ErrorContainer>
+              </Spacer>
+            )}
+            <Spacer position="bottom" size="large" />
+            {isLoading ? (
+              <ActivityIndicator animating={true} color={MD2Colors.orange800} />
+            ) : (
+              <AuthButton
+                icon="login"
+                mode="contained"
+                onPress={() => {
+                  onLogin(email, password);
+                }}
+              >
+                Login
+              </AuthButton>
+            )}
+            <Spacer size="large" />
+            <AuthButton
+              icon="keyboard-backspace"
+              mode="contained"
+              onPress={() => {
+                navigation.goBack();
+              }}
             >
-              Login
+              Back
             </AuthButton>
-          )}
-          <Spacer size="large" />
-          <AuthButton
-            icon="keyboard-backspace"
-            mode="contained"
-            onPress={() => {
-              navigation.goBack();
-            }}
-          >
-            Back
-          </AuthButton>
-        </AccountContainer>
+          </AccountContainer>
+        </FadeInView>
       </AccountCover>
     </AccountBackground>
   );

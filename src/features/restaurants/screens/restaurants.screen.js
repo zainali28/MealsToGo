@@ -12,6 +12,7 @@ import {
   LoadingContainer,
   RestaurantList,
 } from "../components/restaurants.styles";
+import { FadeInView } from "../../../components/animations/fade.animation";
 
 export const RestaurantsScreen = ({ navigation }) => {
   const { isLoading, restaurants } = useContext(RestaurantsContext);
@@ -42,7 +43,9 @@ export const RestaurantsScreen = ({ navigation }) => {
               navigation.navigate("RestaurantDetail", { restaurant: item });
             }}
           >
-            <RestaurantInfoCard restaurant={item} />
+            <FadeInView>
+              <RestaurantInfoCard restaurant={item} />
+            </FadeInView>
           </TouchableOpacity>
         )}
         keyExtractor={(item) => item.placeId}

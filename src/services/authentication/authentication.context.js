@@ -11,6 +11,7 @@ export const AuthContextProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    setIsLoading(true);
     firebaseAuth.onAuthStateChanged(auth, (usr) => {
       if (usr) {
         setUser(usr);
@@ -29,8 +30,8 @@ export const AuthContextProvider = ({ children }) => {
         setIsLoading(false);
       })
       .catch((e) => {
-        setIsLoading(false);
         setError(e.toString());
+        setIsLoading(false);
       });
   };
 
