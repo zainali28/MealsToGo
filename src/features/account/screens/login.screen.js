@@ -15,6 +15,10 @@ import { useContext } from "react";
 import { Text } from "../../../components/typography/text.component";
 import { TextInput } from "react-native-paper";
 import { FadeInView } from "../../../components/animations/fade.animation";
+import {
+  LoadingContainer,
+  Loading,
+} from "../../restaurants/components/restaurants.styles";
 
 export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");

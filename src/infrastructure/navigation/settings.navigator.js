@@ -19,6 +19,7 @@ export const SettingsNavigator = ({ navigation, route }) => (
       name="Setting"
       component={SettingsScreen}
     />
+
     <SettingsStack.Screen name="Favourites" component={FavouritesScreen} />
   </SettingsStack.Navigator>
 );
