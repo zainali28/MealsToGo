@@ -29,7 +29,7 @@ export const SettingsScreen = ({ navigation }) => {
       <FadeInView>
         <AvatarContainer>
           <TouchableOpacity onPress={() => navigation.navigate("Camera")}>
-            {photo !== "" ? (
+            {photo !== null ? (
               <Avatar.Image source={{ uri: photo }} size={180} />
             ) : (
               <Avatar.Icon icon="human" size={180} />
