@@ -1,17 +1,25 @@
 import { Camera, CameraView, useCameraPermissions } from "expo-camera";
 import { useContext, useEffect, useRef } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { Button } from "react-native-paper";
+import { Button, Text, TouchableOpacity, View } from "react-native";
 import styled from "styled-components";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthContext } from "../../../services/authentication/authentication.context";
+import { MD2Colors } from "react-native-paper";
 
 const ProfileCamera = styled(CameraView)`
   flex: 1;
 `;
 
+const ButtonContainer = styled.View`
+  height: 500px;
+`;
+
+const CameraContainer = styled.View`
+  flex: 1;
+`;
+
 export const CameraScreen = () => {
-  const facingRef = useRef("back");
+  const facingRef = useRef("front");
   const cameraRef = useRef(null);
   const [permission, requestPermission] = useCameraPermissions();
   const { user } = useContext(AuthContext);
@@ -19,7 +27,6 @@ export const CameraScreen = () => {
   const snap = async () => {
     if (cameraRef) {
       cameraRef.current?.takePictureAsync().then((p) => {
-        console.log("saved" + p.uri);
         AsyncStorage.setItem(`photo-${user.uid}`, p.uri);
       });
     }
@@ -38,44 +45,15 @@ export const CameraScreen = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <ProfileCamera ref={cameraRef} facing={facingRef.current}>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={() => snap()}>
-            <Text style={styles.text}>Snap Photo</Text>
-          </TouchableOpacity>
-        </View>
-      </ProfileCamera>
-    </View>
+    <CameraContainer>
+      <ProfileCamera ref={cameraRef} facing={facingRef.current} />
+      <Button
+        title="Snap"
+        color={MD2Colors.orange800}
+        onPress={() => {
+          snap();
+        }}
+      />
+    </CameraContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-  },
-  message: {
-    textAlign: "center",
-    paddingBottom: 10,
-  },
-  camera: {
-    flex: 1,
-  },
-  buttonContainer: {
-    flex: 1,
-    flexDirection: "row",
-    backgroundColor: "transparent",
-    margin: 64,
-  },
-  button: {
-    flex: 1,
-    alignSelf: "flex-end",
-    alignItems: "center",
-  },
-  text: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "white",
-  },
-});

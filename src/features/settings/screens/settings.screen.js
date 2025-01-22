@@ -17,7 +17,6 @@ export const SettingsScreen = ({ navigation }) => {
   const getPhoto = async () => {
     AsyncStorage.getItem(`photo-${user.uid}`).then((p) => {
       setPhoto(p);
-      console.log(p);
     });
   };
 

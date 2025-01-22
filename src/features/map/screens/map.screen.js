@@ -1,4 +1,4 @@
-import MapView, { Callout, Marker } from "react-native-maps";
+import MapView, { Callout, Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import styled from "styled-components";
 import { Search } from "../components/search.component";
 import { LocationContext } from "../../../services/location/location.context";
@@ -7,6 +7,7 @@ import { useEffect, useState, useContext } from "react";
 import { ActivityIndicator, MD2Colors } from "react-native-paper";
 import { MapCallout } from "../components/map-callout.component";
 import { FadeInView } from "../../../components/animations/fade.animation";
+import { SafeArea } from "../../restaurants/components/utility/safe-area.component";
 
 const Map = styled(MapView)`
   height: 100%;
@@ -35,14 +36,14 @@ export const MapScreen = ({ navigation }) => {
       viewport: { northeast, southwest },
     },
   } = useContext(LocationContext);
-  const { restaurants = [], isLoading } = useContext(RestaurantsContext);
+  const { restaurants, isLoading } = useContext(RestaurantsContext);
 
   useEffect(() => {
     setLatDelta(northeast.lat - southwest.lat);
   }, [northeast, southwest]);
 
   return (
-    <>
+    <SafeArea>
       <Search />
       {isLoading ? (
         <LoadingContainer>
@@ -57,6 +58,7 @@ export const MapScreen = ({ navigation }) => {
               latitudeDelta: latDelta,
               longitudeDelta: 0.02,
             }}
+            provider={PROVIDER_GOOGLE}
           >
             {restaurants.map((restaurant) => (
               <Marker
@@ -81,6 +83,6 @@ export const MapScreen = ({ navigation }) => {
           </Map>
         </FadeInView>
       )}
-    </>
+    </SafeArea>
   );
 };

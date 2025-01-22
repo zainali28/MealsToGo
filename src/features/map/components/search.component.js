@@ -6,7 +6,6 @@ import { LocationContext } from "../../../services/location/location.context";
 const SearchContainer = styled.View`
   padding: ${(props) => props.theme.space[3]};
   position: absolute;
-  top: 40px;
   z-index: 999;
   width: 100%;
 `;

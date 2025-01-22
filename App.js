@@ -8,6 +8,7 @@ import {
 import { theme } from "./src/infrastructure/theme";
 import { Navigation } from "./src/infrastructure/navigation";
 import { AuthContextProvider } from "./src/services/authentication/authentication.context";
+import { StatusBar } from "react-native";
 
 export default function App() {
   const [oswaldLoaded] = useOswald({
@@ -28,6 +29,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      <StatusBar barStyle="dark-content" />
       <AuthContextProvider>
         <Navigation />
       </AuthContextProvider>

@@ -61,9 +61,8 @@ export const AuthContextProvider = ({ children }) => {
       .then(() => {
         setUser(null);
         setError(null);
-        console.log("signed out");
       })
-      .catch((e) => console.log(e.toString()));
+      .catch((e) => setError(e.toString()));
   };
 
   return (

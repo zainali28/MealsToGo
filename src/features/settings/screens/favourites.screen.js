@@ -14,8 +14,6 @@ export const FavouritesScreen = ({ navigation }) => {
   const { isLoading } = useContext(RestaurantsContext);
   const { favourites } = useContext(FavouritesContext);
 
-  console.log(favourites);
-
   return (
     <>
       <LoadingContainer>

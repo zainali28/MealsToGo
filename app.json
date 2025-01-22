@@ -22,9 +22,7 @@
       },
       "package": "com.foodies.mealstogo"
     },
-    "plugins": [
-      "expo-font"
-    ],
+    "plugins": ["expo-font"],
     "extra": {
       "eas": {
         "projectId": "6b3bd82c-e90d-4645-9c37-62569d685f62"
