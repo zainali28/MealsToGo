@@ -18,7 +18,7 @@ const CameraContainer = styled.View`
   flex: 1;
 `;
 
-export const CameraScreen = () => {
+export const CameraScreen = ({ navigation }) => {
   const facingRef = useRef("front");
   const cameraRef = useRef(null);
   const [permission, requestPermission] = useCameraPermissions();
@@ -34,14 +34,10 @@ export const CameraScreen = () => {
 
   useEffect(() => {
     requestPermission();
-  }, []);
+  }, [permission]);
 
   if (!permission) {
-    return <View />;
-  }
-
-  if (!permission.granted) {
-    return <Button onPress={requestPermission}>Grant permission</Button>;
+    return <Button title="Grant Permission" onPress={requestPermission} />;
   }
 
   return (
@@ -51,7 +47,9 @@ export const CameraScreen = () => {
         title="Snap"
         color={MD2Colors.orange800}
         onPress={() => {
-          snap();
+          snap().then(() => {
+            navigation.goBack();
+          });
         }}
       />
     </CameraContainer>
