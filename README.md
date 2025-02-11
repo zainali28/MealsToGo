@@ -32,7 +32,7 @@ A **React Native** mobile app for discovering restaurants, browsing menus, and f
 ### Info Screen  
 ![Info Screen](screenshots/meals_to_go_info.png)  
 
-### Map Screen (Mpas isnt showing in development build because Google Maps API isn't free)
+### Map Screen (Maps isnt showing in development build because Google Maps API isn't free)
 ![Map Screen](screenshots/meals_to_go_maps.png)  
 
 ### Settings Screen  
