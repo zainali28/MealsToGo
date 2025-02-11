@@ -16,24 +16,53 @@ A **React Native** mobile app for discovering restaurants, browsing menus, and f
 - **State Management**: React Context API  
 
 ## 📸 Screenshots  
-*(Add app screenshots here!)*  
+
+### Main Screen  
+![Main Screen](screenshots/meals_to_go.png)  
+
+### Login Screen  
+![Login Screen](screenshots/meals_to_go_login.png)  
+
+### Register Screen  
+![Register Screen](screenshots/meals_to_go_register.png)  
+
+### Home Screen  
+![Home Screen](screenshots/meals_to_go_restaurants.png)  
+
+### Info Screen  
+![Info Screen](screenshots/meals_to_go_info.png)  
+
+### Map Screen  
+![Map Screen](screenshots/meals_to_go_maps.png)  
+
+### Settings Screen  
+![Settings Screen](screenshots/meals_to_go_settings.png)  
+
+### Camera Screen  
+![Camera Screen](screenshots/meals_to_go_camera.png)  
 
 ## 📦 Installation  
 1. Clone the repository:  
-   ```bash
-   git clone https://github.com/zainali28/MealsToGo.git
-   cd MealsToGo
-   npm install
-   npm run start
+   ```bash  
+   git clone https://github.com/zainali28/MealsToGo.git  
+   cd MealsToGo  
+   ```  
+2. Install dependencies:  
+   ```bash  
+   npm install  
+   ```  
+3. Start the app:  
+   ```bash  
+   npm run start  
+   ```  
 
-🔥 Future Improvements
-Add order & delivery tracking
-Implement user reviews & ratings
-Dark mode support
-🤝 Contributing
-Contributions are welcome! Feel free to fork and submit a PR.
+## 🔥 Future Improvements  
+- Add **order & delivery tracking**  
+- Implement **user reviews & ratings**  
+- Dark mode support  
 
-📜 License
-This project is licensed under the MIT License.
+## 🤝 Contributing  
+Contributions are welcome! Feel free to fork and submit a PR.  
 
-
+## 📜 License  
+This project is licensed under the **MIT License**.  
