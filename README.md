@@ -41,6 +41,9 @@ A **React Native** mobile app for discovering restaurants, browsing menus, and f
 ### Camera Screen  
 ![Camera Screen](screenshots/meals_to_go_camera.png)  
 
+## 🎥 Demo Video  
+Demo is in screenshots/MealsToGo.mp4
+
 ## 📦 Installation  
 1. Clone the repository:  
    ```bash  
